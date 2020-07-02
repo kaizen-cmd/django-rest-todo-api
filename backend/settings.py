@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dehbitor714hkr',
         'USER': 'ppgawxhupjxgsl',
         'PASSWORD': 'b3b67dfb2694d8dd4188730f8aecd44891fcf1dd8a482a5db6b00077cf90d7de',
