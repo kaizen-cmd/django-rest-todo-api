@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 from rest_framework import permissions, status
 from . import models
 from .serializers import TaskSerializer
@@ -14,7 +15,7 @@ class TaskView(APIView):
     def get(self, request):
         tasks = models.Task.objects.filter(user=request.user).order_by('id')
         serialized_tasks = TaskSerializer(tasks, many=True)
-        return Response(serialized_tasks.data)
+        return Response({'tasks': serialized_tasks.data, 'username': request.user.username})
 
     def post(self, request):
         datadict = request.data.copy()
@@ -48,5 +49,4 @@ class TaskView(APIView):
             task_inst.delete()
             return Response({'message': 'successfully deleted'})
         return Response({'error': 'no such task'})
-
 
